@@ -1,31 +1,30 @@
-Superconductor - Parallel Web Programming for Massive Visualizations
+##Superconductor 
+###Parallel Web Programming for Massive Visualizations
 
-==
-
-Open Source Release in May 2013! (BSD3)
+*Open Source Release in May 2013! (BSD3)*
 
 Superconductor is a collection of compilers for scripting large, interactive visualizations. 
 
 By supporting data sets of hundreds of thousands of data points, Superconductor enables new classes of interactive visualizations that were previously out of reach.
 
-== 
+==
+### Three key ideas:
 
-Superconductor uses three key ideas:
-
-1. DSLs: Programs are written in high-level languages (mostly standard web DSLs). 
+1. **DSLs:** Programs are written in high-level *domain specific* languages (DSLs) -- and mostly standard web ones at that. 
   
-  It supports the full pipeline: data loading, styling, layout, rendering, interaction
+  It supports the core visualization pipeline: data loading, styling, layout, rendering, and interaction.
 
-2. Automatic Parallelism: Aggressive compilers that employ program synthesis and modern parallel algorithms
+2. **Automatic Parallelism:** Aggressive compilers employ program synthesis and modern parallel algorithms
 
-  These are aggressive, yet hidden from typical programming interactions.
+  Superconductor's DSL compilers are aggressive, yet are hidden from typical programming interactions.
 
-3. Parallel JavaScript: Portability and scriptability is through exploiting modern web standards from multicore and GPU processing:
+3. **Parallel JavaScript:** Portability and scriptability is through exploiting modern web standards from multicore and GPU processing
 
-  We automate use of: web workers (multicore), WebCL (GPU), WebGL (GPU). 
+  Superconductor automates use of: web workers (multicore), WebCL (GPU), and WebGL (GPU).
 
 
-=== Domain specific languages (DSLs)
+==
+### 1. Domain specific languages (DSLs)
 
 Superconductor supports web languages:
 
@@ -33,9 +32,10 @@ Superconductor supports web languages:
   -- CSS selectors for styling
   -- JavaScript for interaction
 
-It also introduces FTL for custom layouts:
+It also introduces FTL for building custom layouts:
 
-  -- FTL is a declarative constraint-based ("attribute grammar") language
+  -- FTL is a declarative language ("attribute grammar")
+  -- We've used it for 2D and 3D graphics, charting, hierarchical data, and interactive animations
   -- A layout is a tree schema with local constraints between node attributes
   
   Ex:   
@@ -43,14 +43,17 @@ It also introduces FTL for custom layouts:
       children { left: Node; right : Node }
       actions {
         width := left.width + right.width
+        
+        @render paintRect(x, y, width, height, red)
       }
     }
     class VBox : Node { ... }
   
   -- The constraints must be solvable as a sequenence of parallel tree traversals (the compiler automatically figures this out)
+  -- An experimental extension for OMeta (static / metapgrogramming), and through it, declarative rendering (@render in the example)
 
-
-=== Automatic Parallelism
+==
+### 2. Automatic Parallelism
 
 Superconductor provides compilers for each of its high-level DSLs. It automatically finds and exploits parallelism.
 
@@ -59,7 +62,8 @@ Superconductor provides compilers for each of its high-level DSLs. It automatica
 -- It uses modern data parallel compilation techniques when viable
 -- It uses new techniques in program synthesis to find parallelism in the layout language
 
-=== Parallel JavaScript
+==
+### 3. Parallel JavaScript
 
 For portability and scriptability, Superconductor uses parallel JavaScript: 
 
