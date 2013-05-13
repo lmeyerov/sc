@@ -1,7 +1,7 @@
 ##Superconductor 
 ###Parallel Web Programming for Massive Visualizations
 
-*Open Source Release in May 2013! (BSD3)*
+*Open Source Release in May 2013! (BSD3 license)*
 
 Superconductor is a collection of compilers for scripting large, interactive visualizations. 
 
